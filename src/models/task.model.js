@@ -14,11 +14,15 @@ const taskSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-
-export default mongoose.model('tasks',taskSchema)
+export default mongoose.model("tasks", taskSchema);
