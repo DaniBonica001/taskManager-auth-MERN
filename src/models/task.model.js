@@ -4,11 +4,11 @@ const taskSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, "Title is Required"],
+      required: true,
     },
     description: {
       type: String,
-      required: [true, "Description is Required"],
+      required: true,
     },
     date: {
       type: Date,
