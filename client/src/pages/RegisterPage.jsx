@@ -15,7 +15,7 @@ function RegisterPage() {
     },
   });
 
-  const { signUp, isAuthenticated } = useAuth();
+  const { signUp, isAuthenticated,errors: registerErrors } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,12 +25,19 @@ function RegisterPage() {
   }, [isAuthenticated]);
 
   const onSubmit = async (data) => {
-    console.log(data);
+    //console.log(data);
     signUp(data);
   };
 
   return (
     <div className="bg-zinc-800 max-w-md p-10 rounded-md">
+      {
+        registerErrors.map((error,i)=>(
+          <div className="bg-red-500 p-2 text-white" key={i}>
+            {error}
+            </div>
+        ))
+      }
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
