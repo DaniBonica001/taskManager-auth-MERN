@@ -14,16 +14,16 @@ function TaskFormPage() {
   const params = useParams();
 
   const onSubmit = (data) => {
+
+    const dataValid ={
+      ...data,
+      date: date.date ? dayjs.utc(data.date).format() : dayjs.utc().format()
+    }
+
     if (params.id) {
-      updateTask(params.id, {
-        ...data,
-        date:dayjs.utc(data.date).format(),
-      });
+      updateTask(params.id, dataValid);
     } else {
-      createTask({
-        ...data,
-        date:dayjs.utc(data.date).format(),
-      });
+      createTask(dataValid);
     }
     navigate("/tasks");
   };
@@ -34,8 +34,9 @@ function TaskFormPage() {
         const task = await getTask(params.id);
         setValue("title", task.title);
         setValue("description", task.description);
+        setValue("date", dayjs(task.date).utc().format('YYYY-MM-DD'));
       }
-    }
+    } 
     loadTask();
   }, []);
 
