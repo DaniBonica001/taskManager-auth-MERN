@@ -1,4 +1,7 @@
 import { useTask } from "../context/TaskContext";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+dayjs.extend(utc);
 
 function TaskCard({ task }) {
   const { deleteTask } = useTask();
@@ -10,12 +13,22 @@ function TaskCard({ task }) {
       <header className="flex justify-between">
         <h1 className="text-2xl font-bold">{task.title}</h1>
         <div className="flex gap-x-2 items-center">
-          <button onClick={onClickDelete}>Delete</button>
-          <Link to={`/tasks/${task._id}`}>Edit</Link>
+          <button
+            onClick={onClickDelete}
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
+          >
+            Delete
+          </button>
+          <Link
+            to={`/tasks/${task._id}`}
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+          >
+            Edit
+          </Link>
         </div>
       </header>
       <p className="text-slate-300">{task.description}</p>
-      <p>{new Date(task.date).toLocaleDateString()}</p>
+      <p>{dayjs(task.date).utc().format("DD/MM/YYYY")}</p>
     </div>
   );
 }
