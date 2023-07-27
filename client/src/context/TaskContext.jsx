@@ -30,6 +30,15 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
+  const getTask = async (id) => {
+    try {
+      const res = await getTaskRequest(id);
+      setTasks(res.data);  
+    } catch (error) {
+      setErrors(error.response.data);
+    }
+  };
+
   const createTask = async (task) => {
     try {
       const res = await createTaskRequest(task);
@@ -52,7 +61,7 @@ export const TaskProvider = ({ children }) => {
   }
 
   return (
-    <TaskContext.Provider value={{ tasks, getTasks, createTask ,deleteTask}}>
+    <TaskContext.Provider value={{ tasks, getTasks, getTask,createTask ,deleteTask}}>
       {children}
     </TaskContext.Provider>
   );

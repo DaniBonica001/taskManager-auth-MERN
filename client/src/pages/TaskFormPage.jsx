@@ -1,16 +1,26 @@
 import { useForm } from "react-hook-form";
 import { useTask } from "../context/TaskContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function TaskFormPage() {
   const { register, handleSubmit } = useForm();
-  const { createTask } = useTask();
+  const { createTask,getTask } = useTask();
   const navigate = useNavigate();
+  const params = useParams();
 
   const onSubmit = (data) => {
     createTask(data);
-    navigate("/tasks")
+    navigate("/tasks");
   };
+
+  useEffect(() => {
+    if (params.id) {
+      getTask(params.id);
+    }
+  }, []);
+
+
   return (
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md item">
