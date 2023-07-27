@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTask } from "../context/TaskContext";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -6,7 +7,7 @@ dayjs.extend(utc);
 function TaskCard({ task }) {
   const { deleteTask } = useTask();
   const onClickDelete = (event) => {
-    deleteTask();
+    deleteTask(task._id);
   };
   return (
     <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">

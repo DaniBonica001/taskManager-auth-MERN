@@ -17,7 +17,7 @@ function TaskFormPage() {
 
     const dataValid ={
       ...data,
-      date: date.date ? dayjs.utc(data.date).format() : dayjs.utc().format()
+      date: data.date ? dayjs.utc(data.date).format() : dayjs.utc().format()
     }
 
     if (params.id) {
