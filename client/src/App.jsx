@@ -5,7 +5,6 @@ import { AuthProvider } from "./context/AuthContext";
 import TaskPage from "./pages/TaskPage";
 import TaskFormPage from "./pages/TaskFormPage";
 import ProfilePage from "./pages/ProfilePage";
-import HomePage from "./pages/HomePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { TaskProvider } from "./context/TaskContext";
 import NavBar from "./components/NavBar";
